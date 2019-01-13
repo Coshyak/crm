@@ -1,3 +1,4 @@
+
 <?php
 include("config.php");
 //Variablen deklarieren und mit leeren Werten initalisieren
@@ -121,86 +122,81 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitarbeiter anlegen</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>andisos</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
 <div id="wrapper">
-    <?php
-    include 'navigation.php';
-    ?>
+<?php
+include 'navigation.php';
+?>
     <div class="container-fluid">
         <div class="row">
             <div class="col text-right" style="background-color:#37434d;"><input type="search" placeholder="Suchbegriff eingeben" id="grossesFeld"><button class="btn btn-primary ml-2 mt-1 mb-1" type="Suche">Suche</button><a class="btn  btn-primary ml-2 mt-1 mb-1" type="Suche" href="logout.php">Logout</a></div>
         </div>
         <div class="row">
             <div class="col">
-                <form action="mitarbeiter.php" method="post">
-                    <h1>Mitarbeiter anlegen</h1>
+                <form action="accounts.php" method="post">
+                    <h1>Account anlegen</h1>
                     <div class="one"><h4>Allgemeine Daten</h4></div>
                     <div class="one-container">
-                        <div>
-                            <label style="width:109.6px;">Vorname</label>
-                            <input type="text" name="vorname" value="<?php echo $vorname; ?>" class="ml-2" style="background-color:#ffffff;">
-                            <span class="help-block"><?php echo $vornameError; ?></span>
-                        </div>
-                        <div>
-                            <label style="width:109.6px;">Nachname</label>
-                            <input type="text" name="nachname" value="<?php echo $nachname; ?>" class="ml-2" style="background-color:#ffffff;">
-                            <span class="help-block"><?php echo $nachnameError; ?></span>
-                        </div>
-                        <div>
-                            <label style="width:109.6px;">Geburtsdatum</label>
-                            <input type="text" name="geburtsdatum" value="<?php echo $geburstdatum; ?>" class="ml-2">
-                            <span class="help-block"><?php echo $geburstdatumError; ?></span>
-                        </div>
-                        <div>
-                            <label style="width:109.6px;">Firma</label>
-                            <input type="text" name="firma" value="<?php echo $firma; ?>" class="ml-2">
+                    <div>
+                        <label style="width:109.6px;">Vorname</label>
+                        <input type="text" name="vorname" value="<?php echo $vorname; ?>" class="ml-2" style="background-color:#ffffff;">
+                        <span class="help-block"><?php echo $vornameError; ?></span>
+                    </div>
+                    <div>
+                        <label style="width:109.6px;">Nachname</label>
+                        <input type="text" name="nachname" value="<?php echo $nachname; ?>" class="ml-2" style="background-color:#ffffff;">
+                        <span class="help-block"><?php echo $nachnameError; ?></span>
+                    </div>
+                    <div>
+                        <label style="width:109.6px;">Geburtsdatum</label>
+                        <input type="date" name="geburtsdatum" value="<?php echo $geburtsdatum; ?>" class="ml-2">
+                        <span class="help-block"><?php echo $geburtsdatumError; ?></span>
+                    </div>
+                    <div>
+                        <label style="width:109.6px;">Firma</label>
+                        <input type="text" name="firma" value="<?php echo $firma; ?>" class="ml-2">
                         <span class="help-block"><?php echo $firmaError; ?></span>
-                        </div>
+                    </div>
                     </div>
             </div>
             <div class="col">
                 <h1>&nbsp;</h1>
-                <div class="one"><h4>Kontaktinformationen</h4></div>
+                <div class="one"><h4>Adressinformationen</h4></div>
                 <div class="one-container">
-                    <div>
-                        <label style="width:109.6px;">E-Mail</label>
-                        <input type="text" name="mail" value="<?php echo $mail;?>" class="ml-2">
-                        <span class="help-block"><?php echo $mailError; ?></span>
-                    </div>
-                    <div>
-                        <label style="width:109.6px;">Straße</label>
-                        <input type="text" name="strasse" value="<?php echo $strasse; ?>" class="ml-2">
-                        <span class="help-block"><?php echo $strasseError; ?></span>
-                    </div>
-                    <div>
-                        <label style="width:109.6px;">PLZ</label>
-                        <input type="text" name="plz" value="<?php echo $plz; ?>" class="ml-2">
-                        <span class="help-block"><?php echo $plzError; ?></span>
-                    </div>
-                    <div>
-                        <label style="width:109.6px;">Stadt</label>
-                        <input type="text" name="stadt" value="<?php echo $ort;?>" class="ml-2">
-                        <span class="help-block"><?php echo $ortError; ?></span>
-                    </div>
-                    <div>
-                        <label style="width:109.6px;">Land</label>
-                        <input type="text" name="land" value="<?php echo $land; ?>" class="ml-2">
-                        <span class="help-block"><?php echo $landError; ?></span>
-                        <button class="btn btn-primary such-button" type="submit">Mitarbeiter anlegen</button>
-                    </div>
+                <div>
+                    <label style="width:109.6px;">Straße</label>
+                    <input type="text" name="strasse" value="<?php echo $strasse; ?>" class="ml-2">
+                    <span class="help-block"><?php echo $strasseError; ?></span>
+                </div>
+                <div>
+                    <label style="width:109.6px;">PLZ</label>
+                    <input type="text" name="plz" value="<?php echo $plz; ?>" class="ml-2">
+                    <span class="help-block"><?php echo $plzError; ?></span>
+                </div>
+                <div>
+                    <label style="width:109.6px;">Stadt</label>
+                    <input type="text" name="stadt" value="<?php echo $stadt;?>" class="ml-2">
+                    <span class="help-block"><?php echo $stadtError; ?></span>
+                </div>
+                <div>
+                    <label style="width:109.6px;">Land</label>
+                    <input type="text" name="land" value="<?php echo $land; ?>" class="ml-2">
+                    <span class="help-block"><?php echo $landError; ?></span>
+                    <button class="btn btn-primary such-button" type="submit">Account anlegen</button>
+                </div>
                 </div>
                 </form>
             </div>
     </div>
-</div>
+    </div>
 </div>
 </body>
 

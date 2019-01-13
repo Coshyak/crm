@@ -10,6 +10,8 @@ $beschreibung = "";
 $beschreibungError = "";
 $ansprechpartner = "";
 $ansprechpartnerError = "";
+$mitarbeiter = "";
+$mitarbeiterError = "";
 $status = "";
 $statusError = "";
 $garantie = "";
@@ -62,6 +64,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
         $ansprechpartnerError = "Bitte geben Sie einen vorhandenen Ansprechpartner ein";
     }
+    //Zuständiger Mitarbeiter
+    if (empty(trim($_POST["mitarbeiter"]))) {
+        $mitarbeiterError = "Bitte geben Sie einen Mitarbeiter ein";
+    }
+    // SQL select für den Nachnamen des Mitarbeiter
+    $sqlselect = "SELECT nachname FROM mitarbeiter WHERE nachname = '$mitarbeiterEingabe'";
+    // schaut wie viele Spalten es hat
+    $result = mysqli_query($connection, $sqlSelect);
+    //schaut ob es jetzt eine oder mehr eintragungen für den Nachnamen in Mitarbeiter gibt
+    if(mysqli_num_rows($result) >= 1){
+        $mitarbeiter = $mitarbeiterEingabe;
+    }
+    else {
+        $mitarbeiterError = "Bitte geben Sie einen vorhandenen Mitarbeiter ein";
+    }
     //Status
     if($_POST["status"] == "offen") {
         $status = "offen";
@@ -103,24 +120,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
         $produktError = "Bitte geben Sie ein vorhandenes Produkt ein";
     }
-    //Alter des Produkts
-    if(empty(trim($_POST["alter"]))) {
-        $produktError = "Bitte geben Sie ein Alter ein";
+    //Fehler des Produkts
+    if(empty(trim($_POST["fehler"]))) {
+        $fehlerError = "Bitte geben Sie einen Fehler ein";
     }
-    else if(!(ctype_digit($_POST["alter"]))) {
-        $alterError = "Bitte geben Sie nur Ziffern ein";
-    }
-    else if($_POST["alter"] < 16) {
-        $alterError = "Das Alter des Produkts kann höchstens 15 Jahre alt sein";
+    elseif (strlen(trim($_POST["fehler"])) < 2) {
+        $fehlerError = "Der Fehler muss 2 Buchstaben oder mehr enthalten";
+    } elseif (strlen(trim($_POST["fehler"])) > 40) {
+        $fehlerError = "Der Fehler muss 40 Buchstaben oder weniger enthalten";
     }
     else {
-        $alter = trim($_POST["alter"]);
+        $fehler = trim($_POST["fehler"]);
     }
     //Vordem Insert überprüfen ob Fehler vorhanden sind
-    if(empty($auftraggeberError) && empty($ansprechpartnerError) && empty($statusError) && empty($beschreibungError) && empty($garantieError) && empty($alterError) && empty($produktError)) {
+    if(empty($auftraggeberError) && empty($ansprechpartnerError) && empty($mitarbeiterError) && empty($statusError) && empty($beschreibungError) && empty($garantieError) && empty($fehlerError) && empty($produktError)) {
         //SQL Statement Variable übergeben
-        $sqlStatement = "INSERT INTO servicerueckmeldung (Auftraggeber, Ansprechpartner, Beschreibung, Status, Garantie, Produkt, Alter) 
-                     VALUES ('$auftraggeber','$ansprechpartner','$beschreibung', '$status', '$garantie', '$produkt', '$alter')";
+        $sqlStatement = "INSERT INTO produktaenderung (Auftraggeber, Ansprechpartner, Mitarbeiter, Beschreibung, Status, Garantie, Produkt, Fehler) 
+                     VALUES ('$auftraggeber','$ansprechpartner','$mitarbeiter', '$beschreibung', '$status', '$garantie', '$produkt', '$fehler')";
         //SQL Insert durchführen mit mysqli query
         if(mysqli_query($connection, $sqlStatement)) {
             echo "Account erfolgreich angelegt";
@@ -136,12 +152,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicerückmeldung anlegen</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Produktänderungsnachweis anlegen</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
@@ -155,15 +171,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="row">
             <div class="col">
-                <form action="servicerückmeldung.php" method="post">
-                    <h1>Servicerückmeldung anlegen</h1>
+                <form action="produktver.php" method="post">
+                    <h1>Produktänderungsnachweis anlegen</h1>
                     <div class="one"><h4>Allgemeine Daten</h4></div>
                     <div class="one-container">
-                        <div>
-                            <label style="width:109.6px;">ID</label>
-                            <input type="text" name="ID" value="<?php echo $id; ?>" class="ml-2" style="background-color:#ffffff;">
-                            <span class="help-block"><?php echo $idError; ?></span>
-                        </div>
                         <div>
                             <label style="width:109.6px;">Auftraggeber</label>
                             <input type="text" name="auftraggeber" value="<?php echo $auftraggeber; ?>" class="ml-2" style="background-color:#ffffff;">
@@ -206,17 +217,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="help-block"><?php echo $produktError; ?></span>
                     </div>
                     <div>
-                        <label style="width:109.6px;">Alter des Produkts</label>
-                        <input type="text" name="alter" value="<?php echo $alter; ?>" class="ml-2">
-                        <span class="help-block"><?php echo $alterError; ?></span>
-                        <button class="btn btn-primary such-button" type="submit">Servicerückmeldung anlegen</button>
+                        <label style="width:109.6px;">Fehler</label>
+                        <input type="text" name="fehler" value="<?php echo $fehler; ?>" class="ml-2">
+                        <span class="help-block"><?php echo $fehlerError; ?></span>
+                        <button class="btn btn-primary such-button" type="submit">Produktänderungsnachweis anlegen</button>
                     </div>
                 </div>
                 </form>
             </div>
         </div>
     </div>
-    </div>
+</div>
 </body>
 
 </html>

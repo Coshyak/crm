@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicepro</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <style>
         .one{
             border-bottom: solid red;
@@ -35,12 +35,12 @@
             <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="serviceauftrag.php">Serviceaufträge</a><a class="dropdown-item" role="presentation" href="servicerückmeldung.php">Servicerückmeldungen</a><a class="dropdown-item" role="presentation" href="serviceauftraege.php">Serviceauftrag</a><a class="dropdown-item" role="presentation" href="produktver.php">Produktänderungsnachweise</a></div>
         </div>
         <div class="dropdown"><button class="btn btn-primary dropdown-toggle kein-rahmen" data-toggle="dropdown" aria-expanded="false" type="button" style="width:100%;" href="grundfunktion.php">Grundfunktionen</button>
-            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="grundfunktion.php">Grundfunktionen</a><a class="dropdown-item" role="presentation" href="aktivitat.php">Aktivität</a><a class="dropdown-item" role="presentation" href="preis.php">Preis</a><a class="dropdown-item" role="presentation" href="fall.php">Fälle</a></div>
+            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="grundfunktion.php">Grundfunktionen</a><a class="dropdown-item" role="presentation" href="aktivitat.php">Aktivität</a><a class="dropdown-item" role="presentation" href="fall.php">Fälle</a></div>
         </div>
     </div>
     <div></div>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/Sidebar-Menu.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/Sidebar-Menu.js"></script>
 </body>
