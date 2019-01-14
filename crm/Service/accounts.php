@@ -14,6 +14,8 @@ $land="";
 $landError ="";
 $strasse="";
 $strasseError="";
+$hausnummer = "";
+$hausnummerError = "";
 $stadt="";
 $stadtError="";
 //Diese IF Abfrage weil ich sonst Fehler bekommen, da beim ersten Aufruf noch kein post geschehen ist
@@ -90,6 +92,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $strasse = trim($_POST["strasse"]);
     }
+    //Hausnummer
+
     //Stadt
     if (empty(trim($_POST["stadt"]))) {
         $stadtError = "Bitte geben Sie einen stadtn ein";
@@ -156,11 +160,6 @@ include 'navigation.php';
                         <span class="help-block"><?php echo $nachnameError; ?></span>
                     </div>
                     <div>
-                        <label style="width:109.6px;">Geburtsdatum</label>
-                        <input type="date" name="geburtsdatum" value="<?php echo $geburtsdatum; ?>" class="ml-2">
-                        <span class="help-block"><?php echo $geburtsdatumError; ?></span>
-                    </div>
-                    <div>
                         <label style="width:109.6px;">Firma</label>
                         <input type="text" name="firma" value="<?php echo $firma; ?>" class="ml-2">
                         <span class="help-block"><?php echo $firmaError; ?></span>
@@ -176,6 +175,11 @@ include 'navigation.php';
                     <input type="text" name="strasse" value="<?php echo $strasse; ?>" class="ml-2">
                     <span class="help-block"><?php echo $strasseError; ?></span>
                 </div>
+                    <div>
+                        <label style="width:109.6px;">Hausnummer</label>
+                        <input type="text" name="hausnummer" value="<?php echo $hausnummer; ?>" class="ml-2">
+                        <span class="help-block"><?php echo $hausnummerError; ?></span>
+                    </div>
                 <div>
                     <label style="width:109.6px;">PLZ</label>
                     <input type="text" name="plz" value="<?php echo $plz; ?>" class="ml-2">
